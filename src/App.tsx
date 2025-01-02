@@ -4,7 +4,7 @@ import Main from './components/Main/Main';
 
 function App() {
   return (
-    <section className='bg-indigo-100 w-screen min-h-screen'>
+    <section className='bg-indigo-50 w-screen min-h-screen'>
       <Header />
       <Main />
     </section>
