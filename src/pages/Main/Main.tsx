@@ -14,7 +14,7 @@ export default function Main() {
   .then(res => console.log(res))
 
   return (
-    <section className='w-full h-full'>
+    <section className='w-full h-full flex content-center'>
       
     </section>
   );
