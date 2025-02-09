@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react';
 import synergyData from '../../assets/Synergy.json';
+import Box from '../../components/Box/Box';
 
 interface ISynergy {
   synergy: string;
   class: Array<string>;
+}
+
+interface IParty {
+  class: string;
 }
 
 export default function Synergy() {
@@ -22,6 +27,8 @@ export default function Synergy() {
     { synergy: '마나 회복', class: [] }
   ]);
 
+  const [partys, setPartys] = useState<IParty[][]>([]);
+
   useEffect(() => {
     const gettedSynergy: ISynergy[] = [...synergy];
     if(gettedSynergy[0].class.length === 0) {
@@ -34,21 +41,40 @@ export default function Synergy() {
     }
   }, []);
 
+  const _addParty = () => {
+    setPartys([
+      ...partys,
+      []
+    ]);
+  }
+
   return (
     <section className='w-full h-full flex justify-center mt-8'>
-      <table className='table-auto bg-white rounded-xl shadow-xl'>
-        <thead>
-          <tr className='border-b-2 border-indigo-500 text-indigo-700 border-dotted'>
-            <th className='p-4'>시너지</th>
-            <th className=''>직업</th>
-          </tr>
-        </thead>
-        <tbody>
-          {synergy.map((v,idx) => (
-            <tr key={idx}><td className='p-4 px-8 text-sm font-bold text-indigo-500'>{v.synergy}</td><td className='p-4 px-8 text-sm'>{v.class.join(', ')}</td></tr>
-          ))}
-        </tbody>
-      </table>
+      <section className='flex flex-row gap-x-8 min-w-120'>
+        <table className='table-auto bg-white rounded-xl shadow-xl'>
+          <thead className=''>
+            <tr className='border-b-2 border-indigo-500 text-indigo-700 border-dotted'>
+              <th className='p-4'>시너지</th>
+              <th className=''>직업</th>
+            </tr>
+          </thead>
+          <tbody>
+            {synergy.map((v,idx) => (
+              <tr key={idx}><td className='p-4 px-8 text-sm text-indigo-500'>{v.synergy}</td><td className='p-4 px-8 text-sm'>{v.class.join(', ')}</td></tr>
+            ))}
+          </tbody>
+        </table>
+        <section className='flex flex-col gap-y-4 w-xl'>
+          <button className='py-2 px-4 rounded-xl shadow-md active:shadow-none w-28' onClick={_addParty}>
+            <p className='text-slate-500'>파티 추가</p>
+          </button>
+          <section className='flex gap-x-4'>
+              {partys.map(v => (
+                <Box />
+              ))}
+          </section>
+        </section>
+      </section>
     </section>
   );
 }
