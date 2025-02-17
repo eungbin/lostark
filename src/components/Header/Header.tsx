@@ -13,6 +13,7 @@ export default function Header() {
         <p className='cursor-pointer text-slate-500 font-bold text-base hover:text-indigo-400'>공지사항</p>
         <p className='cursor-pointer text-slate-500 font-bold text-base hover:text-indigo-400'>캐릭터 검색</p>
         <p className='cursor-pointer text-slate-500 font-bold text-base hover:text-indigo-400' onClick={() => changePage('/synergy')}>시너지 정리</p>
+        <p className='cursor-pointer text-slate-500 font-bold text-base hover:text-indigo-400' onClick={() => changePage('/work')}>내 숙제</p>
       </section>
     </header>
   );
